@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package inz;
+
+service AuthService {
+  rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenResponse) {}
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse) {}
+}
+
+message GenerateTokenRequest { string user_id = 1; }
+
+message GenerateTokenResponse { string access_token = 1; }
+
+message ValidateTokenRequest { string access_token = 1; }
+
+message ValidateTokenResponse { bool is_token_valid = 1; }
