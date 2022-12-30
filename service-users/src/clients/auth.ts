@@ -1,0 +1,29 @@
+import grpc from "@grpc/grpc-js";
+import protoLoader from "@grpc/proto-loader";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import { ProtoGrpcType } from "../../types/proto/service";
+import { getConfig } from "../config";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const PROTO_PATH = __dirname + "/../../../proto/auth/service.proto";
+
+const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+  keepCase: true,
+  longs: String,
+  enums: String,
+  defaults: true,
+  oneofs: true,
+});
+
+const { inz } = grpc.loadPackageDefinition(
+  packageDefinition
+) as unknown as ProtoGrpcType;
+
+export const authServiceClient = new inz.AuthService(
+  `localhost:${getConfig().GRPC_AUTH_SERVICE_PORT}`,
+  grpc.credentials.createInsecure()
+);
