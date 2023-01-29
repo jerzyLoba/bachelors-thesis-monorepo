@@ -5,12 +5,24 @@ package inz;
 service AuthService {
   rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenResponse) {}
   rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse) {}
+  rpc InavlidateToken(InavlidateTokenRequest)
+      returns (InavlidateTokenResponse) {}
 }
 
-message GenerateTokenRequest { string user_id = 1; }
+message GenerateTokenRequest {
+  string user_id = 1;
+  string role = 2;
+}
 
 message GenerateTokenResponse { string access_token = 1; }
 
-message ValidateTokenRequest { string access_token = 1; }
+message ValidateTokenRequest {
+  string access_token = 1;
+  string user_id = 2;
+}
 
 message ValidateTokenResponse { bool is_token_valid = 1; }
+
+message InavlidateTokenRequest { string access_token = 1; }
+
+message InavlidateTokenResponse {}
