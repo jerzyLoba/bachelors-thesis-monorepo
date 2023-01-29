@@ -3,8 +3,10 @@
 
 export interface GenerateTokenRequest {
   'user_id'?: (string);
+  'role'?: (string);
 }
 
 export interface GenerateTokenRequest__Output {
   'user_id': (string);
+  'role': (string);
 }
