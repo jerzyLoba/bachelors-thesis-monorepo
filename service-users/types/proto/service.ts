@@ -13,6 +13,8 @@ export interface ProtoGrpcType {
     AuthService: SubtypeConstructor<typeof grpc.Client, _inz_AuthServiceClient> & { service: _inz_AuthServiceDefinition }
     GenerateTokenRequest: MessageTypeDefinition
     GenerateTokenResponse: MessageTypeDefinition
+    GetUserIdRequest: MessageTypeDefinition
+    GetUserIdResponse: MessageTypeDefinition
     InavlidateTokenRequest: MessageTypeDefinition
     InavlidateTokenResponse: MessageTypeDefinition
     LoginRequest: MessageTypeDefinition
