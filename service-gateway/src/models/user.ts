@@ -4,6 +4,11 @@ export type UserRegisterRequest = {
   name?: string;
 };
 
+export type UserLoginRequest = {
+  email?: string;
+  password?: string;
+};
+
 export type AccessToken = {
   token: string;
 };

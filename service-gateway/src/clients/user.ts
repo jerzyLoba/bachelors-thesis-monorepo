@@ -23,6 +23,7 @@ const { inz } = grpc.loadPackageDefinition(
 ) as unknown as ProtoGrpcType;
 
 export const usersServiceClient = new inz.UsersService(
+  // TODO: env variable
   "localhost:50051",
   grpc.credentials.createInsecure()
 );
