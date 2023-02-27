@@ -3,10 +3,10 @@
 
 export interface ValidateTokenRequest {
   'access_token'?: (string);
-  'user_id'?: (string);
+  'device_id'?: (string);
 }
 
 export interface ValidateTokenRequest__Output {
   'access_token': (string);
-  'user_id': (string);
+  'device_id': (string);
 }

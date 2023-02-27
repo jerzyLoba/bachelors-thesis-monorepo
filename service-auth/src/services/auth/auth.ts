@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 import { AuthServiceHandlers } from "../../../types/proto/inz/AuthService";
-import { generateToken, validateToken } from "./handlers";
+import { generateToken, invalidateToken, validateToken } from "./handlers";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,6 +31,7 @@ export const getAuthServiceServer = () => {
   const handlers: AuthServiceHandlers = {
     GenerateToken: generateToken,
     ValidateToken: validateToken,
+    InavlidateToken: invalidateToken,
   };
 
   server.addService(inz.AuthService.service, handlers);

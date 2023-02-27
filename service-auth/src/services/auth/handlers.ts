@@ -1,17 +1,73 @@
-import { AuthServiceHandlers } from "../../../types/proto/inz/AuthService";
+import jwt from "jsonwebtoken";
 
-export const generateToken: AuthServiceHandlers["GenerateToken"] = (
+import { AuthServiceHandlers } from "../../../types/proto/inz/AuthService";
+import { JWTInterface, signToken } from "../../utils/jwt";
+import { getUserToken, setUserToken } from "../../utils/redis";
+import { getConfig } from "../../config";
+
+const { JWT_SECRET } = getConfig();
+
+export const generateToken: AuthServiceHandlers["GenerateToken"] = async (
   call,
   callback
 ) => {
   try {
+    const { role, user_id, device_id } = call.request;
+    console.log(device_id);
     console.log(`got generate token call for userId: ${call.request.user_id}`);
-    callback(null, { access_token: "test" });
+
+    if (role !== "admin" && role !== "user") {
+      throw new Error("invalid user role");
+    }
+
+    if (!device_id) {
+      throw new Error("no device id");
+    }
+
+    const access_token = signToken({ user_id, role });
+
+    await setUserToken(user_id, device_id, access_token);
+    callback(null, { access_token });
   } catch (e) {
     callback(e, null);
   }
 };
 
-export const validateToken: AuthServiceHandlers["ValidateToken"] = () => {
-  console.log("auth service validate handler noop");
+export const validateToken: AuthServiceHandlers["ValidateToken"] = async (
+  call,
+  callback
+) => {
+  try {
+    const { access_token, device_id } = call.request;
+
+    let id: string | undefined;
+
+    jwt.verify(access_token, JWT_SECRET, (err, decoded) => {
+      if (err) {
+        throw new Error("Could not decode");
+      }
+
+      id = (decoded as JWTInterface).user_id;
+    });
+
+    const cachedToken = await getUserToken(id, device_id);
+
+    // if (!cachedToken) {
+    //   throw new Error("token not cached in redis");
+    // }
+
+    console.log({ jwt_payload_resolve: cachedToken });
+    callback(null, { is_token_valid: !!cachedToken });
+  } catch (e) {
+    callback(e, null);
+  }
+};
+
+export const invalidateToken: AuthServiceHandlers["InavlidateToken"] = async (
+  call,
+  callback
+) => {
+  try {
+    console.log("invalidate token not implemented");
+  } catch (e) {}
 };

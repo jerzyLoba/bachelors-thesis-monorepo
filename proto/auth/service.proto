@@ -12,13 +12,14 @@ service AuthService {
 message GenerateTokenRequest {
   string user_id = 1;
   string role = 2;
+  string device_id = 3;
 }
 
 message GenerateTokenResponse { string access_token = 1; }
 
 message ValidateTokenRequest {
   string access_token = 1;
-  string user_id = 2;
+  string device_id = 2;
 }
 
 message ValidateTokenResponse { bool is_token_valid = 1; }
