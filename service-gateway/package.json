@@ -10,7 +10,7 @@
     "dev": "npx nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
     "client": "node --experimental-specifier-resolution=node --loader ts-node/esm src/test.ts",
     "build": "tsc",
-    "generate-types": "proto-loader-gen-types --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=types/proto/ ../proto/users/*.proto ../proto/auth/*.proto"
+    "generate-types": "proto-loader-gen-types --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=types/proto/ ../proto/users/*.proto ../proto/auth/*.proto ../proto/products/*.proto"
   },
   "keywords": [],
   "author": "",
