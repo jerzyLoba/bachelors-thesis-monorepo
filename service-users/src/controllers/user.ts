@@ -1,5 +1,5 @@
-import { LoginRequest } from "../../types/proto/inz/LoginRequest";
-import { RegisterRequest } from "../../types/proto/inz/RegisterRequest";
+import { LoginRequest } from "../proto/inz/LoginRequest";
+import { RegisterRequest } from "../proto/inz/RegisterRequest";
 import { pool } from "../db/connection";
 import { UserModel } from "../models/user";
 
