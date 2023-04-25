@@ -3,7 +3,7 @@ import protoLoader from "@grpc/proto-loader";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { ProtoGrpcType } from "../../types/proto/service";
+import { ProtoGrpcType } from "../proto/service";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

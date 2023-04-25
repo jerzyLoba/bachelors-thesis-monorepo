@@ -1,6 +1,6 @@
 import express from "express";
 import { prodctsServiceClient } from "../clients/products";
-import { ProductParams, ProductQueryParams } from "../../types/products";
+import { ProductParams, ProductQueryParams } from "../types/products";
 
 const router = express.Router();
 
