@@ -6,10 +6,10 @@
   "description": "Service template",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-specifier-resolution=node ./dist/src/index.js",
+    "start": "node --experimental-specifier-resolution=node ./dist/index.js",
     "dev": "npx nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
-    "build": "tsc",
-    "generate-types": "proto-loader-gen-types --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=types/proto/ ../proto/products/*.proto"
+    "build": "tsc -b",
+    "generate-types": "proto-loader-gen-types --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=src/proto/ ../proto/products/*.proto"
   },
   "keywords": [],
   "author": "jloba",

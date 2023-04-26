@@ -5,7 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2020",
     // "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "rootDir": "./src"
   },
-  "include": ["src/**/*", "types/**/*"]
+  "include": ["src/**/*", "types/**/*"],
+  "exclude": ["node_modules"]
 }
