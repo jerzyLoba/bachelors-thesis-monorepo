@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { AuthServiceHandlers } from "../../proto/inz/AuthService";
+import { AuthServiceHandlers } from "../../../types/proto/inz/AuthService";
 import { JWTInterface, signToken } from "../../utils/jwt";
 import { getUserToken, setUserToken } from "../../utils/redis";
 import { getConfig } from "../../config";

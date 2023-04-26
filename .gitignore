@@ -2,8 +2,7 @@ node_modules
 
 dist
 .env
-.env.local
-bootstrap-db.sh
+*.sh
 
 
 .DS_Store

@@ -1,6 +1,6 @@
 import * as express from "express";
 import { v4 } from "uuid";
-import { ReqWithCredentials } from "../types/cookie";
+import { ReqWithCredentials } from "../../types/cookie";
 
 export const deviceIdentification = (
   req: express.Request,
