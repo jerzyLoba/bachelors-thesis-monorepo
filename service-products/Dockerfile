@@ -1,15 +1,11 @@
 FROM node:18-alpine
 
-WORKDIR /proto
-
-COPY proto .
-
 WORKDIR /app
 
-COPY service-products .
+COPY . .
 
-RUN npm install --silent && npm run generate-types && npm run build
+RUN npm install --silent
 
-EXPOSE 50051
+EXPOSE 4000
 
 CMD ["npm", "run", "start"]

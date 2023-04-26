@@ -1,7 +1,7 @@
-import { ExtendedProduct } from "../proto/inz/ExtendedProduct";
-import { GetProductDetailsRequest } from "../proto/inz/GetProductDetailsRequest";
-import { Product } from "../proto/inz/Product";
-import { ProductParamsRequest } from "../proto/inz/ProductParamsRequest";
+import { ExtendedProduct } from "../../types/proto/inz/ExtendedProduct";
+import { GetProductDetailsRequest } from "../../types/proto/inz/GetProductDetailsRequest";
+import { Product } from "../../types/proto/inz/Product";
+import { ProductParamsRequest } from "../../types/proto/inz/ProductParamsRequest";
 import { pool } from "../db/connection";
 
 export const getProductsQuery = async ({

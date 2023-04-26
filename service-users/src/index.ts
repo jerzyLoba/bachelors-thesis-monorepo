@@ -1,11 +1,12 @@
 import grpc from "@grpc/grpc-js";
 
-import { createUsersServiceServer } from "./services/users/users";
+import { getConfig } from "./config";
+import { getUsersServiceServer } from "./services/users/users";
 
 function main() {
-  const userServer = createUsersServiceServer();
+  const userServer = getUsersServiceServer();
   userServer.bindAsync(
-    `service-users:50051`,
+    `0.0.0.0:${getConfig().GRPC_USER_SERVICE_PORT}`,
     grpc.ServerCredentials.createInsecure(),
     (error, port) => {
       if (error) {

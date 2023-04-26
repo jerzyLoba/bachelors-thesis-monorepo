@@ -2,7 +2,7 @@ import express from "express";
 import { UserLoginRequest, UserRegisterRequest } from "../models/user";
 import { usersServiceClient } from "../clients/user";
 import { authServiceClient } from "../clients/auth";
-import { ReqWithCredentials, ReqWithDeviceId } from "../types/cookie";
+import { ReqWithCredentials, ReqWithDeviceId } from "../../types/cookie";
 
 const router = express.Router();
 
