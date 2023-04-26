@@ -4,8 +4,8 @@ import protoLoader from "@grpc/proto-loader";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { UsersServiceHandlers } from "../../../types/proto/inz/UsersService";
-import { ProtoGrpcType } from "../../../types/proto/service";
+import { UsersServiceHandlers } from "../../proto/inz/UsersService";
+import { ProtoGrpcType } from "../../proto/service";
 import { login, register } from "./handlers";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,11 +25,14 @@ const {
   inz: { UsersService },
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const getUsersServiceServer = () => {
+export const createUsersServiceServer = () => {
   const server = new grpc.Server();
   const handlers: UsersServiceHandlers = {
     Register: register,
     Login: login,
+    GetUserId: () => {
+      console.log("not implemented");
+    },
   };
 
   server.addService(UsersService.service, handlers);

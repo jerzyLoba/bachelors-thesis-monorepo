@@ -1,4 +1,4 @@
-import { UsersServiceHandlers } from "../../../types/proto/inz/UsersService";
+import { UsersServiceHandlers } from "../../proto/inz/UsersService";
 import { authServiceClient } from "../../clients/auth";
 import {
   createUser,

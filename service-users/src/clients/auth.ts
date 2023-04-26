@@ -3,7 +3,7 @@ import protoLoader from "@grpc/proto-loader";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { ProtoGrpcType } from "../../types/proto/service";
+import { ProtoGrpcType } from "../proto/service";
 import { getConfig } from "../config";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +24,6 @@ const { inz } = grpc.loadPackageDefinition(
 ) as unknown as ProtoGrpcType;
 
 export const authServiceClient = new inz.AuthService(
-  `localhost:${getConfig().GRPC_AUTH_SERVICE_PORT}`,
+  `service-auth:50051`,
   grpc.credentials.createInsecure()
 );

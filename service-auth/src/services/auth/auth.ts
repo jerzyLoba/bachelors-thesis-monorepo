@@ -1,12 +1,12 @@
 import grpc from "@grpc/grpc-js";
 import protoLoader from "@grpc/proto-loader";
 
-import { ProtoGrpcType } from "../../../types/proto/service";
+import { ProtoGrpcType } from "../../proto/service";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { AuthServiceHandlers } from "../../../types/proto/inz/AuthService";
+import { AuthServiceHandlers } from "../../proto/inz/AuthService";
 import { generateToken, invalidateToken, validateToken } from "./handlers";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +26,7 @@ const { inz } = grpc.loadPackageDefinition(
   packageDefinition
 ) as unknown as ProtoGrpcType;
 
-export const getAuthServiceServer = () => {
+export const createAuthServiceServer = () => {
   const server = new grpc.Server();
   const handlers: AuthServiceHandlers = {
     GenerateToken: generateToken,

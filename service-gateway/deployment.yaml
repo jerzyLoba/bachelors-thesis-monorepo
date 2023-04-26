@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-gateway
+  labels:
+    app: service-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-gateway
+  template:
+    metadata:
+      labels:
+        app: service-gateway
+    spec:
+      containers:
+        - name: service-gateway
+          image: lobao/service-gateway
+          imagePullPolicy: Never
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: "50m"
+            requests:
+              memory: 64Mi
+          ports:
+            - containerPort: 4000
+          env:
+            - name: PORT
+              value: "4000"
