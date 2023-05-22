@@ -6,7 +6,7 @@ import { ProtoGrpcType } from "../../proto/service";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { AuthServiceHandlers } from "../../proto/inz/AuthService";
+import { AuthServiceHandlers } from "../../proto/inz/auth/AuthService";
 import { generateToken, invalidateToken, validateToken } from "./handlers";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,9 +22,11 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-const { inz } = grpc.loadPackageDefinition(
-  packageDefinition
-) as unknown as ProtoGrpcType;
+const {
+  inz: {
+    auth: { AuthService },
+  },
+} = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
 export const createAuthServiceServer = () => {
   const server = new grpc.Server();
@@ -34,6 +36,6 @@ export const createAuthServiceServer = () => {
     InavlidateToken: invalidateToken,
   };
 
-  server.addService(inz.AuthService.service, handlers);
+  server.addService(AuthService.service, handlers);
   return server;
 };
