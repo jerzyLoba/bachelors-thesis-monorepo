@@ -1,4 +1,4 @@
-import { ProductsServiceHandlers } from "../proto/inz/products/ProductsService";
+import { ProductsServiceHandlers } from "../../proto/inz/products/ProductsService";
 
 import {
   getProductDetailsQuery,
