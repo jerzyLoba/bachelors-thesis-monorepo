@@ -15,4 +15,5 @@ export const getConfig = () => ({
   DB_PORT: Number(process.env.DB_PORT) || 5432,
   GRPC_USER_SERVICE_PORT: process.env.GRPC_USER_SERVICE_PORT,
   GRPC_AUTH_SERVICE_PORT: process.env.GPRC_AUTH_SERVICE_PORT,
+  METRICS_PORT: Number(process.env.METRICS_PORT),
 });
