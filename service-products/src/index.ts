@@ -5,7 +5,7 @@ import { createProductsServiceServer } from "./service";
 function main() {
   const productServer = createProductsServiceServer();
   productServer.bindAsync(
-    `service-producs:50051`,
+    `0.0.0.0:50051`,
     grpc.ServerCredentials.createInsecure(),
     (error, port) => {
       if (error) {

@@ -5,7 +5,7 @@ import { createUsersServiceServer } from "./services/users/users";
 function main() {
   const userServer = createUsersServiceServer();
   userServer.bindAsync(
-    `service-users:50051`,
+    `0.0.0.0:50051`,
     grpc.ServerCredentials.createInsecure(),
     (error, port) => {
       if (error) {
