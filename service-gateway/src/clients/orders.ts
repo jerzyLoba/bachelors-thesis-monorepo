@@ -8,7 +8,7 @@ import { ProtoGrpcType } from "../proto/service";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PROTO_PATH = __dirname + "/../../../proto/users/service.proto";
+const PROTO_PATH = __dirname + "/../../../proto/orders/service.proto";
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -20,11 +20,11 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 
 const {
   inz: {
-    users: { UsersService },
+    orders: { OrdersService },
   },
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const usersServiceClient = new UsersService(
-  "service-users:50051",
+export const cartServiceClient = new OrdersService(
+  `service-orders:50051`,
   grpc.credentials.createInsecure()
 );
