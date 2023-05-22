@@ -1,6 +1,6 @@
 import grpc from "@grpc/grpc-js";
 
-import { createUsersServiceServer } from "./services/users/users";
+import { createUsersServiceServer } from "./services";
 
 function main() {
   const userServer = createUsersServiceServer();
