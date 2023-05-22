@@ -1,5 +1,4 @@
 import { prodctsServiceClient } from "../../clients/products";
-import { Cart } from "../../proto/inz/cart/Cart";
 import { CartServiceHandlers } from "../../proto/inz/cart/CartService";
 import { ExtendedProduct } from "../../proto/inz/products/ExtendedProduct";
 import { Product } from "../../proto/inz/products/Product";
