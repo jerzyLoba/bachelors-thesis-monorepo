@@ -48,6 +48,8 @@ export interface ProtoGrpcType {
       PlaceOrderResponse: MessageTypeDefinition
     }
     products: {
+      DescreaseProductQuantityRequest: MessageTypeDefinition
+      DescreaseProductQuantityResponse: MessageTypeDefinition
       ExtendedProduct: MessageTypeDefinition
       GetProductDetailsRequest: MessageTypeDefinition
       GetProductDetailsResponse: MessageTypeDefinition

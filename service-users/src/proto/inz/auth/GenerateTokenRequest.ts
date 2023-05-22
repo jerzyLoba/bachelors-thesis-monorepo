@@ -2,13 +2,13 @@
 
 
 export interface GenerateTokenRequest {
-  'user_id'?: (string);
+  'user_id'?: (number);
   'role'?: (string);
   'device_id'?: (string);
 }
 
 export interface GenerateTokenRequest__Output {
-  'user_id': (string);
+  'user_id': (number);
   'role': (string);
   'device_id': (string);
 }

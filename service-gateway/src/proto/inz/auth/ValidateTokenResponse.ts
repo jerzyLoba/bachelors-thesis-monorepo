@@ -3,10 +3,10 @@
 
 export interface ValidateTokenResponse {
   'is_token_valid'?: (boolean);
-  'user_id'?: (string);
+  'user_id'?: (number);
 }
 
 export interface ValidateTokenResponse__Output {
   'is_token_valid': (boolean);
-  'user_id': (string);
+  'user_id': (number);
 }

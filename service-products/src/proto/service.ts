@@ -10,6 +10,8 @@ type SubtypeConstructor<Constructor extends new (...args: any) => any, Subtype> 
 export interface ProtoGrpcType {
   inz: {
     products: {
+      DescreaseProductQuantityRequest: MessageTypeDefinition
+      DescreaseProductQuantityResponse: MessageTypeDefinition
       ExtendedProduct: MessageTypeDefinition
       GetProductDetailsRequest: MessageTypeDefinition
       GetProductDetailsResponse: MessageTypeDefinition

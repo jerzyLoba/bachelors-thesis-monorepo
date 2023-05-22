@@ -21,6 +21,8 @@ export interface ProtoGrpcType {
       RemoveFromCartResponse: MessageTypeDefinition
     }
     products: {
+      DescreaseProductQuantityRequest: MessageTypeDefinition
+      DescreaseProductQuantityResponse: MessageTypeDefinition
       ExtendedProduct: MessageTypeDefinition
       GetProductDetailsRequest: MessageTypeDefinition
       GetProductDetailsResponse: MessageTypeDefinition

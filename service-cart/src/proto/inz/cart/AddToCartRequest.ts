@@ -2,14 +2,14 @@
 
 
 export interface AddToCartRequest {
-  'user_id'?: (string);
+  'user_id'?: (number);
   'cart_id'?: (string);
   'product_id'?: (number);
   'quantity'?: (number);
 }
 
 export interface AddToCartRequest__Output {
-  'user_id': (string);
+  'user_id': (number);
   'cart_id': (string);
   'product_id': (number);
   'quantity': (number);

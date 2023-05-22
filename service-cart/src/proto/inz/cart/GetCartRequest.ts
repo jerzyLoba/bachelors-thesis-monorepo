@@ -2,9 +2,9 @@
 
 
 export interface GetCartRequest {
-  'user_id'?: (string);
+  'user_id'?: (number);
 }
 
 export interface GetCartRequest__Output {
-  'user_id': (string);
+  'user_id': (number);
 }
