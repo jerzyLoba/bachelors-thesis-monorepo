@@ -8,6 +8,7 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 export const getConfig = () => ({
+  DB_PASSWORD: process.env.DB_PASSWORD,
   GRPC_USER_SERVICE_PORT: process.env.GRPC_USER_SERVICE_PORT,
   JWT_SECRET: process.env.JWT_SECRET,
   DB_HOST: process.env.DB_HOST,

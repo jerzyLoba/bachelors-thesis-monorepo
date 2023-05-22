@@ -1,10 +1,11 @@
 syntax = "proto3";
 
-package inz;
+package inz.users;
 
 service UsersService {
   rpc Login(LoginRequest) returns (LoginResponse) {}
   rpc Register(RegisterRequest) returns (RegisterResponse) {}
+  rpc GetUserId(GetUserIdRequest) returns (GetUserIdResponse) {}
 }
 
 message LoginRequest {
@@ -22,3 +23,7 @@ message RegisterRequest {
 }
 
 message RegisterResponse { string access_token = 1; }
+
+message GetUserIdRequest { string email = 1; }
+
+message GetUserIdResponse { string id = 1; }

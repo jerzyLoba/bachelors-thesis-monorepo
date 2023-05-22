@@ -18,11 +18,13 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-const { inz } = grpc.loadPackageDefinition(
-  packageDefinition
-) as unknown as ProtoGrpcType;
+const {
+  inz: {
+    users: { UsersService },
+  },
+} = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const usersServiceClient = new inz.UsersService(
+export const usersServiceClient = new UsersService(
   "service-users:50051",
   grpc.credentials.createInsecure()
 );

@@ -1,3 +1,44 @@
 syntax = "proto3";
 
-package inz;
+package inz.orders;
+
+import "google/protobuf/timestamp.proto";
+
+service OrdersService {
+  rpc GetUserOrders(GetUserOrdersRequest) returns (GetUserOrdersResponse) {}
+  rpc PlaceOrder(PlaceOrderRequest) returns (PlaceOrderResponse) {}
+}
+
+enum OrderStatus {
+  PAYMENT_PENDING = 1;
+  SENT = 2;
+  FINISHED = 3;
+  CANCELED = 4;
+}
+
+enum PaymentMethod {
+  CREDIT_CARD = 1;
+  BANK_TRANSFER = 2;
+}
+
+message Order {
+  int32 order_id = 1;
+  string order_status = 2;
+  PaymentMethod payment_method = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message GetUserOrdersRequest { int32 user_id = 1; }
+
+message GetUserOrdersResponse {
+  int32 user_id = 1;
+  repeated Order orders = 2;
+}
+
+message PlaceOrderRequest {
+  int32 user_id = 1;
+  PaymentMethod payment_method = 2;
+}
+
+message PlaceOrderResponse { Order order = 1; }

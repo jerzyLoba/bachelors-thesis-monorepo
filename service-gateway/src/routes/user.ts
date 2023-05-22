@@ -1,5 +1,5 @@
 import express from "express";
-import { UserLoginRequest, UserRegisterRequest } from "../models/user";
+import { UserLoginRequest, UserRegisterRequest } from "../types/user";
 import { usersServiceClient } from "../clients/user";
 import { authServiceClient } from "../clients/auth";
 import { ReqWithCredentials, ReqWithDeviceId } from "../types/cookie";

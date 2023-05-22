@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package inz;
+package inz.auth;
 
 service AuthService {
   rpc GenerateToken(GenerateTokenRequest) returns (GenerateTokenResponse) {}
@@ -10,7 +10,7 @@ service AuthService {
 }
 
 message GenerateTokenRequest {
-  string user_id = 1;
+  int32 user_id = 1;
   string role = 2;
   string device_id = 3;
 }
@@ -22,7 +22,10 @@ message ValidateTokenRequest {
   string device_id = 2;
 }
 
-message ValidateTokenResponse { bool is_token_valid = 1; }
+message ValidateTokenResponse {
+  bool is_token_valid = 1;
+  int32 user_id = 2;
+}
 
 message InavlidateTokenRequest { string access_token = 1; }
 

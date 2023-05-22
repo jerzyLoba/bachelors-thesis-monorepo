@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-import { AuthServiceHandlers } from "../../proto/inz/AuthService";
+import { AuthServiceHandlers } from "../../proto/inz/auth/AuthService";
 import { JWTInterface, signToken } from "../../utils/jwt";
 import { getUserToken, setUserToken } from "../../utils/redis";
 import { getConfig } from "../../config";
@@ -29,6 +29,7 @@ export const generateToken: AuthServiceHandlers["GenerateToken"] = async (
     await setUserToken(user_id, device_id, access_token);
     callback(null, { access_token });
   } catch (e) {
+    console.log("service-auth:generateToken:error", e);
     callback(e, null);
   }
 };
@@ -57,8 +58,9 @@ export const validateToken: AuthServiceHandlers["ValidateToken"] = async (
     // }
 
     console.log({ jwt_payload_resolve: cachedToken });
-    callback(null, { is_token_valid: !!cachedToken });
+    callback(null, { is_token_valid: !!cachedToken, user_id: id });
   } catch (e) {
+    console.log("service-auth:validateToken:error", e);
     callback(e, null);
   }
 };

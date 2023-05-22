@@ -1,4 +1,4 @@
-import { UsersServiceHandlers } from "../../proto/inz/UsersService";
+import { UsersServiceHandlers } from "../../proto/inz/users/UsersService";
 import { authServiceClient } from "../../clients/auth";
 import {
   createUser,
@@ -20,18 +20,16 @@ export const register: UsersServiceHandlers["Register"] = async (
       password: hashedPassword,
     });
 
-    authServiceClient.GenerateToken(
-      { user_id: String(userId) },
-      (err, response) => {
-        if (err) {
-          throw new Error("auth service bad");
-        } else {
-          console.log("sending request to auth service");
-          callback(null, { access_token: response.access_token });
-        }
+    authServiceClient.GenerateToken({ user_id: userId }, (err, response) => {
+      if (err) {
+        throw new Error("auth service bad");
+      } else {
+        console.log("sending request to auth service");
+        callback(null, { access_token: response.access_token });
       }
-    );
+    });
   } catch (e) {
+    console.log("service-users:register: error", e);
     callback(e, null);
   }
 };
@@ -39,7 +37,7 @@ export const register: UsersServiceHandlers["Register"] = async (
 export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
   try {
     const { email, password, device_id } = call.request;
-
+    console.log("service-users:login: works");
     const { userId, hashedPassword, role } =
       await getUserCredentialsWithPermissions(email);
 
@@ -48,7 +46,7 @@ export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
     }
     console.log("service users, device id", device_id);
     authServiceClient.GenerateToken(
-      { user_id: String(userId), device_id, role },
+      { user_id: userId, device_id, role },
       (err, response) => {
         if (err) {
           console.log(err);
@@ -60,6 +58,7 @@ export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
       }
     );
   } catch (e) {
+    console.log("service-users:login: error", e);
     callback(e, null);
   }
 };

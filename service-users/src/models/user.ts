@@ -1,4 +1,4 @@
-import { RegisterRequest } from "../proto/inz/RegisterRequest";
+import { RegisterRequest } from "../proto/inz/users/RegisterRequest";
 
 type UserRole = "user" | "admin";
 

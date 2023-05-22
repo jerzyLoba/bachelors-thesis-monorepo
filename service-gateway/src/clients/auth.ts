@@ -18,11 +18,13 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-const { inz } = grpc.loadPackageDefinition(
-  packageDefinition
-) as unknown as ProtoGrpcType;
+const {
+  inz: {
+    auth: { AuthService },
+  },
+} = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const authServiceClient = new inz.AuthService(
+export const authServiceClient = new AuthService(
   // TODO: env variable
   "localhost:50052",
   grpc.credentials.createInsecure()

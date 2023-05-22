@@ -1,11 +1,13 @@
 syntax = "proto3";
 
-package inz;
+package inz.products;
 
 service ProductsService {
   rpc GetProductDetails(GetProductDetailsRequest)
       returns (GetProductDetailsResponse) {}
   rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {}
+  rpc DecreaseProductQuantity(DescreaseProductQuantityRequest)
+      returns (DescreaseProductQuantityResponse) {}
 }
 
 message Product {
@@ -38,3 +40,14 @@ message GetProductDetailsResponse { ExtendedProduct product = 1; }
 message GetProductsRequest { ProductParamsRequest params = 1; }
 
 message GetProductsResponse { repeated Product products = 1; }
+
+// probably wont be used
+message DescreaseProductQuantityRequest {
+  int32 product_id = 1;
+  int32 quantity = 2;
+}
+
+message DescreaseProductQuantityResponse {
+  int32 product_id = 1;
+  int32 quantity = 2;
+}

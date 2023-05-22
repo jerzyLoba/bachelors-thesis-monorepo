@@ -1,16 +1,16 @@
 {
-  "name": "service-template",
+  "name": "service-gateway",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Service template",
+  "description": "Service gateway",
   "main": "index.js",
   "scripts": {
     "start": "node --experimental-specifier-resolution=node ./dist/index.js",
     "dev": "npx nodemon --watch './**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/index.ts",
     "client": "node --experimental-specifier-resolution=node --loader ts-node/esm src/test.ts",
     "build": "tsc -b",
-    "generate-types": "proto-loader-gen-types --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=src/proto/ ../proto/users/*.proto ../proto/auth/*.proto ../proto/products/*.proto"
+    "generate-types": "proto-loader-gen-types --includeDirs=../proto --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=src/proto/ ../proto/users/*.proto ../proto/auth/*.proto ../proto/products/*.proto ../proto/cart/*.proto ../proto/orders/*.proto"
   },
   "keywords": [],
   "author": "",
