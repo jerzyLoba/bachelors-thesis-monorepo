@@ -22,7 +22,9 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 });
 
 const {
-  inz: { UsersService },
+  inz: {
+    users: { UsersService },
+  },
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
 export const createUsersServiceServer = () => {

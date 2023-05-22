@@ -4,7 +4,6 @@ import protoLoader from "@grpc/proto-loader";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import { ProtoGrpcType } from "../proto/service";
-import { getConfig } from "../config";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,11 +18,13 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   oneofs: true,
 });
 
-const { inz } = grpc.loadPackageDefinition(
-  packageDefinition
-) as unknown as ProtoGrpcType;
+const {
+  inz: {
+    auth: { AuthService },
+  },
+} = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const authServiceClient = new inz.AuthService(
+export const authServiceClient = new AuthService(
   `service-auth:50051`,
   grpc.credentials.createInsecure()
 );
