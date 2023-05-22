@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package inz;
+package inz.products;
 
 service ProductsService {
   rpc GetProductDetails(GetProductDetailsRequest)
