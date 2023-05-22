@@ -4,8 +4,8 @@ import protoLoader from "@grpc/proto-loader";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { OrdersServiceHandlers } from "../proto/inz/orders/OrdersService";
-import { ProtoGrpcType } from "../proto/service";
+import { OrdersServiceHandlers } from "../../proto/inz/orders/OrdersService";
+import { ProtoGrpcType } from "../../proto/service";
 import { getUserOrders, placeOrder } from "./handlers";
 
 const __filename = fileURLToPath(import.meta.url);
