@@ -4,7 +4,7 @@ import protoLoader from "@grpc/proto-loader";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { ProductsServiceHandlers } from "../proto/inz/ProductsService";
+import { ProductsServiceHandlers } from "../proto/inz/products/ProductsService";
 import { ProtoGrpcType } from "../proto/service";
 import { getProductDetails, getProducts } from "./handlers";
 
@@ -22,7 +22,9 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 });
 
 const {
-  inz: { ProductsService },
+  inz: {
+    products: { ProductsService },
+  },
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
 export const createProductsServiceServer = () => {
