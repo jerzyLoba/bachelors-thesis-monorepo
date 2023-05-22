@@ -1,11 +1,11 @@
 import { client } from "../config/redis";
 import { Cart } from "../proto/inz/cart/Cart";
 
-export const setCachedCart = async (id: string, value: string) =>
+export const setCachedCart = async (id: number, value: string) =>
   await client.json.set(`user:${id}:cart`, "$", value);
 
 export const updateCachedCart = async (
-  id: string,
+  id: number,
   value: Partial<Cart["products"]>
 ) => {
   await client
@@ -18,5 +18,5 @@ export const updateCachedCart = async (
   return await getCachedCart(id);
 };
 
-export const getCachedCart = async (id: string) =>
+export const getCachedCart = async (id: number) =>
   await (client.json.get(`user:${id}:cart`) as Promise<Cart>);
