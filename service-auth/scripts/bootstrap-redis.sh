@@ -1,8 +1,8 @@
 #!/bin/bash
 
-set -a; source ../.env; set +a
-
-# TODO: add password for redis server
+set -a
+source ../.env
+set +a
 
 docker run -p $DB_PORT:6379 -d \
     --name $DB_NAME \
