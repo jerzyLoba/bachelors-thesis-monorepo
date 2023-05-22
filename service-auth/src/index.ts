@@ -1,6 +1,6 @@
 import grpc from "@grpc/grpc-js";
 
-import { createAuthServiceServer } from "./services/auth/auth";
+import { createAuthServiceServer } from "./services";
 
 function main() {
   const authServer = createAuthServiceServer();

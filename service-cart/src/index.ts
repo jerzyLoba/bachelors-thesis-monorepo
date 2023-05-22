@@ -1,6 +1,6 @@
 import grpc from "@grpc/grpc-js";
 
-import { createCartServiceServer } from "./services/cart/cart";
+import { createCartServiceServer } from "./services";
 
 function main() {
   const authServer = createCartServiceServer();

@@ -1,8 +1,9 @@
-import { ProductsServiceHandlers } from "../proto/inz/products/ProductsService";
+import { ProductsServiceHandlers } from "../../proto/inz/products/ProductsService";
+
 import {
   getProductDetailsQuery,
   getProductsQuery,
-} from "../controllers/products";
+} from "../../controllers/products";
 
 export const getProducts: ProductsServiceHandlers["GetProducts"] = async (
   call,
