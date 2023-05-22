@@ -20,17 +20,14 @@ export const register: UsersServiceHandlers["Register"] = async (
       password: hashedPassword,
     });
 
-    authServiceClient.GenerateToken(
-      { user_id: String(userId) },
-      (err, response) => {
-        if (err) {
-          throw new Error("auth service bad");
-        } else {
-          console.log("sending request to auth service");
-          callback(null, { access_token: response.access_token });
-        }
+    authServiceClient.GenerateToken({ user_id: userId }, (err, response) => {
+      if (err) {
+        throw new Error("auth service bad");
+      } else {
+        console.log("sending request to auth service");
+        callback(null, { access_token: response.access_token });
       }
-    );
+    });
   } catch (e) {
     console.log("service-users:register: error", e);
     callback(e, null);
@@ -49,7 +46,7 @@ export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
     }
     console.log("service users, device id", device_id);
     authServiceClient.GenerateToken(
-      { user_id: String(userId), device_id, role },
+      { user_id: userId, device_id, role },
       (err, response) => {
         if (err) {
           console.log(err);

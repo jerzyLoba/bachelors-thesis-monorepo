@@ -9,7 +9,7 @@ export const getUserId = async (email: Required<LoginRequest["email"]>) => {
     [email]
   );
 
-  return String(res.rows[0].id);
+  return res.rows[0].id;
 };
 
 export const getUserCredentialsWithPermissions = async (
