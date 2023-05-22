@@ -1,4 +1,4 @@
-import { UsersServiceHandlers } from "../../proto/inz/UsersService";
+import { UsersServiceHandlers } from "../../proto/inz/users/UsersService";
 import { authServiceClient } from "../../clients/auth";
 import {
   createUser,
@@ -32,6 +32,7 @@ export const register: UsersServiceHandlers["Register"] = async (
       }
     );
   } catch (e) {
+    console.log("service-users:register: error", e);
     callback(e, null);
   }
 };
@@ -39,7 +40,7 @@ export const register: UsersServiceHandlers["Register"] = async (
 export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
   try {
     const { email, password, device_id } = call.request;
-
+    console.log("service-users:login: works");
     const { userId, hashedPassword, role } =
       await getUserCredentialsWithPermissions(email);
 
@@ -60,6 +61,7 @@ export const login: UsersServiceHandlers["Login"] = async (call, callback) => {
       }
     );
   } catch (e) {
+    console.log("service-users:login: error", e);
     callback(e, null);
   }
 };

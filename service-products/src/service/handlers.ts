@@ -14,6 +14,7 @@ export const getProducts: ProductsServiceHandlers["GetProducts"] = async (
     const products = await getProductsQuery(params);
     callback(null, { products });
   } catch (e) {
+    console.log("service-products:getProducts:error", e);
     callback(e, null);
   }
 };
@@ -26,6 +27,7 @@ export const getProductDetails: ProductsServiceHandlers["GetProductDetails"] =
       const product = await getProductDetailsQuery(product_id);
       callback(null, { product });
     } catch (e) {
+      console.log("service-products:getProductDetails:error", e);
       callback(e, null);
     }
   };
