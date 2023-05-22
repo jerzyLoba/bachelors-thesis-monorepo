@@ -32,6 +32,9 @@ export const createProductsServiceServer = () => {
   const handlers: ProductsServiceHandlers = {
     GetProductDetails: getProductDetails,
     GetProducts: getProducts,
+    DecreaseProductQuantity: (_call, _callback) => {
+      console.log("service-products:descreaseProductQuantity not implemented");
+    },
   };
 
   server.addService(ProductsService.service, handlers);
