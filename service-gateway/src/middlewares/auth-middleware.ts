@@ -2,12 +2,14 @@ import * as express from "express";
 import { authServiceClient } from "../clients/auth";
 import { ReqWithCredentials } from "../types/cookie";
 
-export interface AuthRequest<T = any> extends express.Request<{}, {}, T> {
-  user_id?: string;
-}
+export type AuthedRequest<
+  P = any,
+  ResBody = any,
+  ReqBody = any
+> = express.Request<P, ResBody, ReqBody & { user_id?: number }>;
 
 export const authMiddleware = (
-  req: AuthRequest,
+  req: AuthedRequest,
   res: express.Response,
   next: express.NextFunction
 ) => {
@@ -22,8 +24,7 @@ export const authMiddleware = (
       { access_token: cookies.token, device_id: cookies.dev_id },
       (err, response) => {
         if (err) {
-          console.log(err);
-          return res.status(500).send("Internal server error");
+          throw err;
         }
 
         if (!response.is_token_valid) {
@@ -35,12 +36,13 @@ export const authMiddleware = (
           response
         );
 
-        req.user_id = response.user_id;
+        req.body.user_id = response.user_id;
         // res.cookie("token", response.access_token, { httpOnly: true });
       }
     );
     next();
   } catch (e) {
-    throw new Error("not authenticated");
+    console.log("service-gateway:authServiceClient:ValidateToken:error", e);
+    return res.sendStatus(403);
   }
 };
