@@ -17,8 +17,7 @@ router.get<{}, {}, {}, ProductQueryParams>("/", (req, res) => {
       },
       (err, response) => {
         if (err) {
-          console.log(err);
-          return res.status(500).send("Internal server error");
+          throw err;
         }
         console.log("service-products: get product from microservice ok");
         console.log(response);
@@ -27,7 +26,8 @@ router.get<{}, {}, {}, ProductQueryParams>("/", (req, res) => {
       }
     );
   } catch (e) {
-    return res.sendStatus(500).send("Internal server error");
+    console.log("service-gateway:productServiceClient:GetProducts:error", e);
+    return res.sendStatus(500);
   }
 });
 
@@ -47,8 +47,7 @@ router.get<ProductParams>("/:id", (req, res) => {
       },
       (err, response) => {
         if (err) {
-          console.log(err);
-          return res.status(500).send("Internal server error");
+          throw err;
         }
         console.log(
           "service-products: get product details from microservice ok"
@@ -59,7 +58,11 @@ router.get<ProductParams>("/:id", (req, res) => {
       }
     );
   } catch (e) {
-    return res.status(500).send("Internal server error");
+    console.log(
+      "service-gateway:productServiceClient:GetProductDetails:error",
+      e
+    );
+    return res.sendStatus(500);
   }
 });
 
