@@ -4,7 +4,7 @@ import { getConfig } from "../config";
 const { JWT_SECRET } = getConfig();
 
 type JWTPayload = {
-  user_id: string;
+  user_id: number;
   role: "user" | "admin";
 };
 

@@ -1,7 +1,7 @@
 import { client } from "../config/redis";
 
 export const setUserToken = async (
-  id: string,
+  id: number,
   device_id: string,
   value: string
 ) =>
@@ -9,5 +9,5 @@ export const setUserToken = async (
     EX: 86400,
   });
 
-export const getUserToken = async (id: string, device_id: string) =>
+export const getUserToken = async (id: number, device_id: string) =>
   await client.get(`user:${id}+${device_id}:jwt`);
