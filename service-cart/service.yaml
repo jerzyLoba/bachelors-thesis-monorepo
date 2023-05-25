@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-cart
+spec:
+  selector:
+    app: service-cart
+  ports:
+    - protocol: TCP
+      port: 50051
+      targetPort: 50051
