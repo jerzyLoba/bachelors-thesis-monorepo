@@ -33,4 +33,6 @@ fi
 
 echo $service_name
 cd ../$service_name
+
+kubectl delete secret "${service_name}-secret" --ignore-not-found
 kubectl create secret generic "${service_name}-secret" --from-env-file=.env
