@@ -16,15 +16,14 @@ spec:
     spec:
       containers:
         - name: service-products
-          image: service-products:1.0
+          image: lobao/service-products
           imagePullPolicy: Never
           resources:
             limits:
-              memory: 32Mi
-              cpu: "50m"
-          requests:
-            memory: 16Mi
-            cpu: "10m"
+              memory: 128Mi
+              cpu: "100m"
+            requests:
+              memory: 64Mi
           ports:
             - containerPort: 50051
           envFrom:
