@@ -25,7 +25,6 @@ const {
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
 export const authServiceClient = new AuthService(
-  // TODO: env variable
-  "localhost:50052",
+  "service-auth:50051",
   grpc.credentials.createInsecure()
 );
