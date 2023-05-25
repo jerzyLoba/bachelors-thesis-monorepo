@@ -4,7 +4,7 @@ import protoLoader from "@grpc/proto-loader";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-import { UsersServiceHandlers } from "../../proto/inz/UsersService";
+import { UsersServiceHandlers } from "../../proto/inz/users/UsersService";
 import { ProtoGrpcType } from "../../proto/service";
 import { login, register } from "./handlers";
 
