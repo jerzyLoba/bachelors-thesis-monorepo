@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: service-gateway
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "4000"
     spec:
       containers:
         - name: service-gateway
@@ -25,7 +29,9 @@ spec:
             requests:
               memory: 64Mi
           ports:
-            - containerPort: 4000
+            - name: metrics
+              protocol: TCP
+              containerPort: 4000
           env:
             - name: PORT
               value: "4000"

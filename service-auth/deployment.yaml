@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: service-auth
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "4000"
     spec:
       containers:
         - name: service-auth
@@ -25,7 +29,12 @@ spec:
             requests:
               memory: 64Mi
           ports:
-            - containerPort: 50051
+            - name: grpc-server
+              protocol: TCP
+              containerPort: 50051
+            - name: metrics
+              protocol: TCP
+              containerPort: 4000
           envFrom:
             - secretRef:
                 name: service-auth-secret
