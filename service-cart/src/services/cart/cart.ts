@@ -20,7 +20,7 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   enums: String,
   defaults: true,
   oneofs: true,
-  includeDirs: [__dirname + "/../../../proto"],
+  includeDirs: [__dirname + "/../../../../proto"],
 });
 
 const {
