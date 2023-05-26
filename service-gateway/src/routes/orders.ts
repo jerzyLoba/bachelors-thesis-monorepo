@@ -1,16 +1,15 @@
 import express from "express";
 import { orderServiceClient } from "../clients/orders";
-import { AuthedRequest } from "../middlewares";
 
 const router = express.Router();
 
-router.get("/", (req: AuthedRequest, res: express.Response) => {
+router.get("/", (req, res) => {
   try {
     const { user_id } = req.body;
 
     orderServiceClient.GetUserOrders({ user_id }, (err, response) => {
       if (err) {
-        throw err;
+        console.log(err);
       }
       console.log("service-orders: get user orders from microservice ok");
       console.log(response);
@@ -23,12 +22,12 @@ router.get("/", (req: AuthedRequest, res: express.Response) => {
   }
 });
 
-router.post("/place", (req: AuthedRequest, res: express.Response) => {
+router.post("/place", (req, res) => {
   try {
     const { user_id } = req.body;
     orderServiceClient.PlaceOrder({ user_id }, (err, response) => {
       if (err) {
-        throw err;
+        console.log(err);
       }
       console.log("service-orders: place order from microservice ok");
       console.log(response);

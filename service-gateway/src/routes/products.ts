@@ -17,7 +17,7 @@ router.get<{}, {}, {}, ProductQueryParams>("/", (req, res) => {
       },
       (err, response) => {
         if (err) {
-          throw err;
+          console.log(err);
         }
         console.log("service-products: get product from microservice ok");
         console.log(response);
@@ -47,7 +47,7 @@ router.get<ProductParams>("/:id", (req, res) => {
       },
       (err, response) => {
         if (err) {
-          throw err;
+          console.log(err);
         }
         console.log(
           "service-products: get product details from microservice ok"
