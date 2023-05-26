@@ -10,7 +10,7 @@ export const getCart: CartServiceHandlers["GetCart"] = async (
 ) => {
   try {
     const { user_id } = call.request;
-
+    console.log("getCart:user_id: ", user_id);
     const cart = await getCachedCart(user_id);
 
     callback(null, { cart });
@@ -26,39 +26,47 @@ export const addToCart: CartServiceHandlers["AddToCart"] = async (
   try {
     const { user_id, cart_id, product_id, quantity } = call.request;
 
-    let product: ExtendedProduct = {};
-
     prodctsServiceClient.GetProductDetails(
       {
         product_id,
       },
-      (err, response) => {
+      async (err, response) => {
         if (err) {
           console.log(err);
         }
 
-        product = response.product;
+        console.log({ responseProduct: response.product });
+        const product = response.product;
+
+        const cart = await getCachedCart(user_id);
+        console.log({ cachedCart: cart, productDetails: product });
+        const productIndex =
+          cart?.products?.findIndex(
+            (item) => item?.product_id === product.product_id
+          ) || -1;
+
+        let updatedCart: Product[] = cart.products || [];
+
+        if (productIndex === -1) {
+          updatedCart.push({
+            product_id: product.product_id,
+            price: product.price,
+            product_name: product.product_name,
+            quantity: quantity,
+          });
+        } else {
+          updatedCart = cart.products?.map((item) =>
+            item.product_id === product.product_id
+              ? { ...item, quantity: quantity }
+              : item
+          );
+        }
+
+        const res = await updateCachedCart(user_id, updatedCart);
+
+        callback(null, { cart: res });
       }
     );
-
-    const cart = await getCachedCart(user_id);
-
-    const productIndex = cart.products.findIndex(
-      (item) => item.product_id === product.product_id
-    );
-
-    let updatedCart: Product[];
-    if (productIndex === -1) {
-      updatedCart.push(product);
-    } else {
-      updatedCart = cart.products.map((item) =>
-        item.product_id === product.product_id ? product : item
-      );
-    }
-
-    const response = await updateCachedCart(user_id, updatedCart);
-
-    callback(null, { cart: response });
   } catch (e) {
     console.log("service-cart:addToCart:error", e);
     callback(e, null);

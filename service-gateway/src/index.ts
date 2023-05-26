@@ -6,7 +6,7 @@ import { mainRouter } from "./routes";
 import { deviceIdentification } from "./middlewares";
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.DB_PORT || 4000;
 
 app.use(express.json());
 app.use(cors());

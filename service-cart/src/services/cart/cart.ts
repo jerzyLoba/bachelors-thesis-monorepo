@@ -12,7 +12,7 @@ import { addToCart, getCart, removeFromCart } from "./handlers";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PROTO_PATH = __dirname + "/../../../../proto/auth/service.proto";
+const PROTO_PATH = __dirname + "/../../../../proto/cart/service.proto";
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -20,6 +20,7 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   enums: String,
   defaults: true,
   oneofs: true,
+  includeDirs: [__dirname + "/../../../../proto"],
 });
 
 const {

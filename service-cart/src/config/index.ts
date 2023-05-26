@@ -9,7 +9,7 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 export const getConfig = () => ({
   DB_HOST: process.env.DB_HOST,
-  DB_PORT: Number(process.env.PORT) || 6379,
+  DB_PORT: Number(process.env.DB_PORT) || 6379,
   DB_PASSWORD: process.env.DB_PASSWORD,
   METRICS_PORT: Number(process.env.METRICS_PORT),
 });

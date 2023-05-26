@@ -11,7 +11,7 @@ import { getProductDetails, getProducts } from "./handlers";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PROTO_PATH = __dirname + "/../../../proto/products/service.proto";
+const PROTO_PATH = __dirname + "/../../../../proto/products/service.proto";
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,

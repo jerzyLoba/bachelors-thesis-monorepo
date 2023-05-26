@@ -24,7 +24,7 @@ const {
   },
 } = grpc.loadPackageDefinition(packageDefinition) as unknown as ProtoGrpcType;
 
-export const cartServiceClient = new OrdersService(
+export const orderServiceClient = new OrdersService(
   `service-orders:50051`,
   grpc.credentials.createInsecure()
 );

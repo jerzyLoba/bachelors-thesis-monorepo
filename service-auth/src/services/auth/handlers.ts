@@ -41,7 +41,7 @@ export const validateToken: AuthServiceHandlers["ValidateToken"] = async (
   try {
     const { access_token, device_id } = call.request;
 
-    let id: string | undefined;
+    let id: number | undefined;
 
     jwt.verify(access_token, JWT_SECRET, (err, decoded) => {
       if (err) {

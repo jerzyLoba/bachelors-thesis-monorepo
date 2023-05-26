@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-gateway
+  name: service-cart
   labels:
-    app: service-gateway
+    app: service-cart
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: service-gateway
+      app: service-cart
   template:
     metadata:
       labels:
-        app: service-gateway
+        app: service-cart
     spec:
       containers:
-        - name: service-gateway
-          image: lobao/service-gateway
+        - name: service-cart
+          image: lobao/service-cart
           imagePullPolicy: Never
           resources:
             limits:
@@ -25,7 +25,7 @@ spec:
             requests:
               memory: 64Mi
           ports:
-            - containerPort: 4000
-          env:
-            - name: PORT
-              value: "4000"
+            - containerPort: 50051
+          envFrom:
+            - secretRef:
+                name: service-cart-secret
