@@ -1,8 +1,9 @@
 import grpc from "@grpc/grpc-js";
 
-import { createUsersServiceServer } from "./services";
+import { bootstrapMetricsServer, createUsersServiceServer } from "./services";
 
 function main() {
+  bootstrapMetricsServer();
   const userServer = createUsersServiceServer();
   userServer.bindAsync(
     `0.0.0.0:50051`,

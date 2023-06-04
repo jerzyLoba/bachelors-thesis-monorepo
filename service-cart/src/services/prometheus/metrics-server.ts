@@ -18,4 +18,6 @@ app.get("/metrics", async (_req, res) => {
 });
 
 export const bootstrapMetricsServer = () =>
-  app.listen(config.METRICS_PORT, "0.0.0.0");
+  app.listen(config.METRICS_PORT, "0.0.0.0", () => {
+    console.log(`metrics server is listening on port ${config.METRICS_PORT}`);
+  });
