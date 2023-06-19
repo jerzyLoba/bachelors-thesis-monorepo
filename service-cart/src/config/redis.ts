@@ -1,6 +1,5 @@
 import { createClient } from "redis";
 import { getConfig } from ".";
-// TODO change to k8s dns resolved host
 
 const config = getConfig();
 
