@@ -32,7 +32,7 @@ export const authMiddleware = (
         );
 
         req.user_id = response.user_id;
-        // res.cookie("token", response.access_token, { httpOnly: true });
+
         next();
       }
     );

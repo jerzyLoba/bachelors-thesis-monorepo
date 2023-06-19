@@ -45,7 +45,7 @@ export const validateToken: AuthServiceHandlers["ValidateToken"] = async (
 
     jwt.verify(access_token, JWT_SECRET, (err, decoded) => {
       if (err) {
-        throw new Error("Could not decode");
+        throw new Error("could not decode token");
       }
 
       id = (decoded as JWTInterface).user_id;
@@ -53,9 +53,9 @@ export const validateToken: AuthServiceHandlers["ValidateToken"] = async (
 
     const cachedToken = await getUserToken(id, device_id);
 
-    // if (!cachedToken) {
-    //   throw new Error("token not cached in redis");
-    // }
+    if (!cachedToken) {
+      throw new Error("token not cached in redis");
+    }
 
     console.log({ jwt_payload_resolve: cachedToken });
     callback(null, { is_token_valid: !!cachedToken, user_id: id });

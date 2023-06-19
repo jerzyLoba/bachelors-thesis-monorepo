@@ -5,11 +5,8 @@ import { RemoveFromCartRequest } from "../proto/inz/cart/RemoveFromCartRequest";
 import { GetCartRequest } from "../proto/inz/cart/GetCartRequest";
 import { cartServiceClient } from "../clients/cart";
 import { PayloadWihtoutId } from "../types/cart";
-import { authMiddleware } from "../middlewares";
 
 const router = express.Router();
-
-router.use(authMiddleware);
 
 router.get<{}, {}, PayloadWihtoutId<GetCartRequest>>("/", (req, res) => {
   try {
@@ -20,7 +17,6 @@ router.get<{}, {}, PayloadWihtoutId<GetCartRequest>>("/", (req, res) => {
         console.log(err);
       }
       console.log("service-cart: get cart from microservice ok");
-      console.log(response);
 
       return res.status(200).send(response.cart);
     });

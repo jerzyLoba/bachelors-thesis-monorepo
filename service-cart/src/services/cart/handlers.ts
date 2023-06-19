@@ -35,11 +35,14 @@ export const addToCart: CartServiceHandlers["AddToCart"] = async (
           console.log(err);
         }
 
-        console.log({ responseProduct: response.product });
-        const product = response.product;
+        const { product } = response;
+
+        if (quantity > product.quantity) {
+          return callback(new Error("Product quantity exceeds stock"), null);
+        }
 
         const cart = await getCachedCart(user_id);
-        console.log({ cachedCart: cart, productDetails: product });
+
         const productIndex =
           cart?.products?.findIndex(
             (item) => item?.product_id === product.product_id

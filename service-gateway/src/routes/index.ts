@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.use("/user", userRouter);
 router.use("/products", productsRouter);
-router.use("/cart", cartRouter);
+router.use("/cart", authMiddleware, cartRouter);
 router.use("/orders", authMiddleware, ordersRouter);
 router.use("/ping", (_req, res) => {
   // sanity check
