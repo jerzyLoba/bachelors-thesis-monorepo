@@ -11,4 +11,3 @@ docker run -p $DB_PORT:6379 -d \
     redis-stack-server --save 60 1 \
     --loglevel warning \
     --requirepass ${DB_PASSWORD}
-# TODO: add loadmodule instead of redis-stack
