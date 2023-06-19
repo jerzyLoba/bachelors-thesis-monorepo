@@ -24,10 +24,11 @@ spec:
           imagePullPolicy: Never
           resources:
             limits:
-              memory: 128Mi
+              memory: 256Mi
               cpu: "100m"
             requests:
               memory: 64Mi
+              cpu: "100m"
           ports:
             - name: metrics
               protocol: TCP
