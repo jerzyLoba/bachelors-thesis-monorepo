@@ -13,7 +13,7 @@
     "generate-types": "proto-loader-gen-types --includeDirs=../proto --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=src/proto/ ../proto/users/*.proto ../proto/auth/*.proto ../proto/products/*.proto ../proto/cart/*.proto ../proto/orders/*.proto"
   },
   "keywords": [],
-  "author": "",
+  "author": "jloba",
   "license": "ISC",
   "devDependencies": {
     "@types/cookie-parser": "1.4.3",

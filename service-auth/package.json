@@ -12,7 +12,7 @@
     "generate-types": "proto-loader-gen-types -v --grpcLib=@grpc/grpc-js --keepCase --longs=String --enums=String --defaults --oneofs --outDir=src/proto/ ../proto/users/*.proto ../proto/auth/*.proto"
   },
   "keywords": [],
-  "author": "",
+  "author": "jloba",
   "license": "ISC",
   "devDependencies": {
     "@types/jsonwebtoken": "9.0.0",
