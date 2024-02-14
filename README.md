@@ -1,5 +1,9 @@
-# Praca inzynierska
+Thesis topic: _Practical application of a system based on microservices architecture_
+Author: _Jerzy Łoba_
 
-## Temat pracy: _Praktyczne zastosowanie systemu opartego o architekturę mikroserwisów_
+This repo contains:
 
-### Autor: _Jerzy Łoba_
+- implementation of example services written in Node.js
+- configuration files for k8s resources
+- bootstrapping scripts for dbs
+- automation scripts for generic tasks
