@@ -1,5 +1,6 @@
-Thesis topic: _Practical application of a system based on microservices architecture_
-Author: _Jerzy Łoba_
+# Thesis topic: _Practical application of a system based on microservices architecture_
+
+## Author: _Jerzy Łoba_
 
 This repo contains:
 
